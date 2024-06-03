@@ -1,9 +1,6 @@
-
-let rows = 10;
-let columns = 10;
-let resolution = 400;
-let grid;
-
+let rows = 20;
+let columns = 20;
+let resolution = 30;
 
 const matrix = Array(rows).fill().map(() =>
     Array(columns).fill().map(() => Math.round(Math.random()))
@@ -11,7 +8,7 @@ const matrix = Array(rows).fill().map(() =>
 //console.log(matrix);
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(600, 600);
     columns = width / resolution;
     rows = height / resolution;
 }
@@ -24,10 +21,9 @@ function draw() {
             let y = j * resolution;
             if (matrix [i] [j] == 1){
                 fill(255);
-                stroke(0);
+                stroke(255);
+                rect(x, y, resolution -1, resolution -1);
             }
-
-            rect(x, y, resolution, resolution);
         }
     }
     
