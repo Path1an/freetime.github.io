@@ -5,7 +5,6 @@ let resolution = 30;
 const matrix = Array(rows).fill().map(() =>
     Array(columns).fill().map(() => Math.round(Math.random()))
 );
-//console.log(matrix);
 
 function setup() {
     createCanvas(600, 600);
@@ -27,5 +26,28 @@ function draw() {
         }
     }
     
+    /*const matrix = Array(rows).fill().map(() =>
+        Array(columns).fill().map(() => Math.round(Math.random()))
+    );
+
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+           
+            let sum = 0;
+            let neighbors = count(matrix, i, j);
+        }
+    }
+
+    matrix = next;*/
 }
 
+/*countNeighbors (matrix, x, y) {
+    let sum = 0;
+    for (let i = -1; i < 2; i ++) {
+        for (let j = -1; j < 2; j ++) {
+            sum += matrix[i][j];
+        }
+    }
+    sum -= matrix[x][y];
+    return sum;
+}*/
