@@ -26,7 +26,7 @@ function draw() {
         }
     }
     
-    /*const matrix = Array(rows).fill().map(() =>
+    const matrix = Array(rows).fill().map(() =>
         Array(columns).fill().map(() => Math.round(Math.random()))
     );
 
@@ -36,12 +36,11 @@ function draw() {
             let sum = 0;
             let neighbors = count(matrix, i, j);
         }
-    }
-
-    matrix = next;*/
+    } 
+    
 }
 
-/*countNeighbors (matrix, x, y) {
+countNeighbors (matrix, x, y) {
     let sum = 0;
     for (let i = -1; i < 2; i ++) {
         for (let j = -1; j < 2; j ++) {
@@ -50,4 +49,4 @@ function draw() {
     }
     sum -= matrix[x][y];
     return sum;
-}*/
+}
