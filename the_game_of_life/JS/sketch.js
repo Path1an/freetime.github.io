@@ -1,8 +1,7 @@
-let rows = 20;
-let columns = 20;
-let resolution = 30;
+let rows = 30;
+let columns = 30;
+let resolution = 10;
 let grid;
-
 
 function make2DArray (columns, rows){
     const matrix = Array(rows).fill().map(() =>
@@ -27,7 +26,7 @@ function draw() {
             if (grid [i] [j] == 1){
                 fill(255);
                 stroke(69);
-                rect(x, y, resolution -1, resolution -1);
+                rect(x, y, resolution, resolution);
             }
         }
     }
@@ -38,9 +37,10 @@ function draw() {
         for (let j = 0; j < rows; j++) {
             let state = grid[i][j];
 
-            if (i == 0 || i == columns - 1 || j == 0 || j == rows - 1)  {
+            /*  Edges
+            if (i == 0 || i == columns - 1 || j == 0 || j == rows - 1) {
                 next[i][j] = state;
-            } else {
+            } else {*/
 
             let sum = 0;
             let neighbors = countNeighbors(grid, i, j);
@@ -49,10 +49,10 @@ function draw() {
                 next[i][j] = 1;
             } else if (state = 1 && (neighbors > 3 || neighbors > 2)) {
                 next[i][j] = 0;
-            } else{
+            } else {
                 next[i][j] = state;
             }
-                 }
+            
         }
     } 
 
@@ -63,7 +63,11 @@ function draw() {
     let sum = 0;
     for (let i = -1; i < 2; i ++) {
         for (let j = -1; j < 2; j ++) {
-            sum += grid[x+i][y+j];
+
+            let col = (x + i + columns) % columns;
+            let row = (y + j + rows) % rows;
+
+            sum += grid[col][row];
         }
     }
     sum -= grid[x][y];
