@@ -1,5 +1,5 @@
-let rows = 30;
-let columns = 30;
+let rows = !!10;
+let columns = !!10;
 let resolution = 10;
 let grid;
 
@@ -11,7 +11,7 @@ function make2DArray (columns, rows){
 }
 
 function setup() {
-    createCanvas(600, 600);
+    createCanvas(600, 600,);
     columns = width / resolution;
     rows = height / resolution;
     grid = make2DArray(columns, rows);
@@ -19,36 +19,33 @@ function setup() {
 
 function draw() {
     background(0);
+    frameRate(0.2);
+    
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             let x = i * resolution;
             let y = j * resolution;
-            if (grid [i] [j] == 1){
+            if (grid[i][j] == 1){
                 fill(255);
-                stroke(69);
+                stroke(70);
                 rect(x, y, resolution, resolution);
             }
         }
     }
-    
+
     let next = make2DArray(columns, rows);
 
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             let state = grid[i][j];
 
-            /*  Edges
-            if (i == 0 || i == columns - 1 || j == 0 || j == rows - 1) {
-                next[i][j] = state;
-            } else {*/
 
-            let sum = 0;
             let neighbors = countNeighbors(grid, i, j);
 
-            if (state == 0 && neighbors == 3){
-                next[i][j] = 1;
-            } else if (state = 1 && (neighbors > 3 || neighbors > 2)) {
-                next[i][j] = 0;
+            if (state == false && neighbors == 3){
+                next[i][j] = true;
+            } else if (state = true && (neighbors > 3 || neighbors > 2)) {
+                next[i][j] = false;
             } else {
                 next[i][j] = state;
             }
@@ -57,6 +54,7 @@ function draw() {
     } 
 
     grid = next;
+
 }
 
  function countNeighbors (grid, x, y) {
@@ -70,6 +68,17 @@ function draw() {
             sum += grid[col][row];
         }
     }
+
     sum -= grid[x][y];
     return sum;
+}
+
+function mouseDragged (grid) {
+    for (let i = 0; i < columns; i++) {
+       for (let j = 0; j < rows; j++) {
+            let x = floor(mouseX);
+            let y = floor(mouseY);
+            grid[x][y] = true;
+        }
+    }
 }
